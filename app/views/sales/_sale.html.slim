@@ -14,3 +14,18 @@ div id="#{dom_id sale}"
   p
     strong Client:
     =< sale.client_id
+  p 
+    strong Detailed Sale: 
+    - sale.detailed_sales.each do |detailed|
+      p
+        strong Product name:
+        =< detailed.product&.name
+      p
+        strong Quantity:
+        =< detailed.quantity 
+      p
+        strong Individual price:
+        =detailed.current_price 
+      p
+        strong Subtotal:
+        =detailed.total_price

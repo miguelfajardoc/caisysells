@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @detailed_sale
+
+div
+  => link_to "Edit this detailed sale", edit_detailed_sale_path(@detailed_sale)
+  '|
+  =< link_to "Back to detailed sales", detailed_sales_path
+
+  = button_to "Destroy this detailed sale", @detailed_sale, method: :delete

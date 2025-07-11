@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_10_214821) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_11_170745) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -72,6 +72,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_10_214821) do
     t.index ["zone_id"], name: "index_clients_on_zone_id"
   end
 
+  create_table "detailed_sales", force: :cascade do |t|
+    t.integer "quantity"
+    t.float "current_price"
+    t.float "total_price"
+    t.float "discount"
+    t.bigint "product_id", null: false
+    t.bigint "sale_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_detailed_sales_on_account_id"
+    t.index ["product_id"], name: "index_detailed_sales_on_product_id"
+    t.index ["sale_id"], name: "index_detailed_sales_on_sale_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "cost"
@@ -131,6 +146,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_10_214821) do
   add_foreign_key "categories", "accounts"
   add_foreign_key "clients", "accounts"
   add_foreign_key "clients", "zones"
+  add_foreign_key "detailed_sales", "accounts"
+  add_foreign_key "detailed_sales", "products"
+  add_foreign_key "detailed_sales", "sales"
   add_foreign_key "products", "accounts"
   add_foreign_key "products", "categories"
   add_foreign_key "sales", "accounts"

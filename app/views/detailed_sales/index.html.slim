@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Detailed sales
+
+#detailed_sales
+  - @detailed_sales.each do |detailed_sale|
+    == render detailed_sale
+    p
+      = link_to "Show this detailed sale", detailed_sale
+
+= link_to "New detailed sale", new_detailed_sale_path

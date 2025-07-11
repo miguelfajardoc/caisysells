@@ -3,5 +3,5 @@ class Sale < ApplicationRecord
 
   belongs_to :creator, class_name: 'User'
   belongs_to :client
-  has_and_belongs_to_many :products
+  has_many :detailed_sales
 end
